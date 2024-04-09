@@ -4,9 +4,11 @@ import userRoutes from "./routes/user.routes.js"
 
 import connectToMongoDB from './db/connnectToMongoDB.js';
 import cookieParser from 'cookie-parser';
+import { app, server } from "./socket/socket.js";
+import express from "express";
 
-import  express from 'express';
-const app = express();
+
+
 
 import dotenv from "dotenv"
 dotenv.config()
@@ -26,14 +28,14 @@ app.use("/api/users",userRoutes);
 
 
 
-app.get("/", (req, res) => {
-    //root route http://localhost:PORT/
-    res.send("Hello,World!!")
-})
+// app.get("/", (req, res) => {
+//     //root route http://localhost:PORT/
+//     res.send("Hello,World!!")
+// })
 
 
 
-app.listen(PORT,()=>{
+server.listen(PORT,()=>{
     connectToMongoDB()
     console.log(`Server Running on Port http://localhost:${PORT}` )
 })
